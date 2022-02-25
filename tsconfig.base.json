@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@api/*": ["apps/stacks-wallet-mobile/src/api/*"],
+      "@components/*": ["apps/stacks-wallet-mobile/src/components/*"],
+      "@constants/*": ["apps/stacks-wallet-mobile/src/constants/*"],
+      "@crypto/*": ["apps/stacks-wallet-mobile/src/crypto/*"],
+      "@hooks/*": ["apps/stacks-wallet-mobile/src/hooks/*"],
+      "@modals/*": ["apps/stacks-wallet-mobile/src/modals/*"],
+      "@models/*": ["apps/stacks-wallet-mobile/src/models/*"],
+      "@store/*": ["apps/stacks-wallet-mobile/src/store/*"],
+      "@utils/*": ["apps/stacks-wallet-mobile/src/utils/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
