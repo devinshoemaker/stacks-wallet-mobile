@@ -1,0 +1,132 @@
+{
+  "version": 2,
+  "projects": {
+    "stacks-wallet-mobile": {
+      "root": "apps/stacks-wallet-mobile",
+      "sourceRoot": "apps/stacks-wallet-mobile/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/stacks-wallet-mobile",
+            "index": "apps/stacks-wallet-mobile/src/index.html",
+            "baseHref": "/",
+            "main": "apps/stacks-wallet-mobile/src/main.tsx",
+            "polyfills": "apps/stacks-wallet-mobile/src/polyfills.ts",
+            "tsConfig": "apps/stacks-wallet-mobile/tsconfig.app.json",
+            "assets": [
+              "apps/stacks-wallet-mobile/src/favicon.ico",
+              "apps/stacks-wallet-mobile/src/assets"
+            ],
+            "styles": ["apps/stacks-wallet-mobile/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/stacks-wallet-mobile/src/environments/environment.ts",
+                  "with": "apps/stacks-wallet-mobile/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "stacks-wallet-mobile:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "stacks-wallet-mobile:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "apps/stacks-wallet-mobile/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/stacks-wallet-mobile"],
+          "options": {
+            "jestConfig": "apps/stacks-wallet-mobile/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "stacks-wallet-mobile-e2e": {
+      "root": "apps/stacks-wallet-mobile-e2e",
+      "sourceRoot": "apps/stacks-wallet-mobile-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/stacks-wallet-mobile-e2e/cypress.json",
+            "devServerTarget": "stacks-wallet-mobile:serve",
+            "tsConfig": "apps/stacks-wallet-mobile-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "stacks-wallet-mobile:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/stacks-wallet-mobile-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "stacks-wallet-mobile"
+}
